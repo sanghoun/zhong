@@ -8,7 +8,8 @@
 ; `*start-symbol' (see `lkb/user-fns.lsp').
 
 root := phrase &
-  [ SYNSEM [ LOCAL [ COORD -,
+  [ STYLE strict,
+    SYNSEM [ LOCAL [ COORD -,
 		     CAT [ VAL [ SUBJ < >,
 				 COMPS < > ],
 			   MC +,

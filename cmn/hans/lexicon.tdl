@@ -1,20 +1,34 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
 
+;;; Punctuations
+period-marker := punctuation &
+  [ STEM < "。" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.SF prop ].
+
+question-marker := punctuation &
+  [ STEM < "？" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
+
 ;;; Nouns
 我_n := 1sg-pronoun-noun-lex &
-  [ STEM < "我" >].
+  [ STEM < "我" > ].
 
 你_n := 2sg-pronoun-noun-lex &
-  [ STEM < "你" >].
+  [ STEM < "你" > ].
 
 他_n := 3sg-pronoun-noun-lex &
-  [ STEM < "他" >].
+  [ STEM < "他" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ GENDER masc,
+				       ANIMACY animate ] ].
 
 她_n := 3sg-pronoun-noun-lex &
-  [ STEM < "她" >].
+  [ STEM < "她" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ GENDER fem,
+				       ANIMACY animate ] ].
 
 它_n := 3sg-pronoun-noun-lex &
-  [ STEM < "它" >].
+  [ STEM < "它" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.ANIMACY inanimate ].
 
 我们_n := 1pl-pronoun-incl-noun-lex &
   [ STEM < "我们" >].
@@ -26,13 +40,18 @@
   [ STEM < "你们" >].
 
 他们_n := 3pl-pronoun-noun-lex &
-  [ STEM < "他们" >].
+  [ STEM < "他们" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ GENDER masc,
+				       ANIMACY animate ] ].
 
 她们_n := 3pl-pronoun-noun-lex &
-  [ STEM < "她们" >].
+  [ STEM < "她们" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ GENDER fem,
+				       ANIMACY animate ] ].
 
 它们_n := 3pl-pronoun-noun-lex &
-  [ STEM < "它们" >].
+  [ STEM < "它们" >,
+    SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.ANIMACY inanimate ].
 
 其中_n := 3-pronoun-noun-lex &
   [ STEM < "其中" > ].
@@ -151,7 +170,7 @@
     SYNSEM.LKEYS.KEYREL.PRED "_zu3cheng2_v_rel"].
 
 被_v := v_bei_type_lex &
-  [ STEM <"被">].
+  [ STEM <"被"> ].
 
 把_v1 := v_ba_type_lex &
   [ STEM <"把">].
@@ -223,8 +242,7 @@
 	SYNSEM.LKEYS.KEYREL.PRED "_jiu3_a_rel" ].
 	
 以前_r1 := int-adv-s-pre &
-  [ STEM <"以前">,
-    SYNSEM.LKEYS.KEYREL.PRED "_yi3qian2_a_rel" ].
+  [ STEM <"以前"> ].
 
 轻轻_r := int-adv-vp-pre & 
   [ STEM <"轻轻">,
@@ -263,12 +281,10 @@
     SYNSEM.LKEYS.KEYREL.PRED "_yi1ci4_a_rel" ].
 
 在_r := int-adv-vp-pre-no-rel & 
-  [ STEM <"在">,
-    SYNSEM.LKEYS.KEYREL.PRED "_zai4_a_rel" ].
+  [ STEM <"在"> ].
 
 正在_r := int-adv-vp-pre-no-rel & 
-  [ STEM <"正在">,
-    SYNSEM.LKEYS.KEYREL.PRED "_zheng4zai4_a_rel" ].
+  [ STEM <"正在"> ].
 
 了_crs := int-adv-s-post & 
   [ STEM <"了">,
@@ -286,6 +302,10 @@
 过_exp := adv-exp-v-post &
   [ STEM <"过">].
   
+;; SSH 2014-09-02: irules.tdl is now an empty file
+着_dur := adv-dur-v-post &
+  [ STEM <"着">].
+
 今天_r := scop-adv-lex &
   [ STEM <"今天">,
     SYNSEM.LKEYS.KEYREL.PRED "_jin1tian1_a_rel" ].
