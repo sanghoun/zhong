@@ -10,6 +10,7 @@
 ;;; Authors: Nat Hillard, Dan Flickinger, Chunlei Yang
 ;;;
 
+
 ;; SSH 2014-09-04: Teh style feature for efficient generation
 sign :+
  [ STYLE style,
@@ -26,8 +27,41 @@ spoken := robust &
  [ WRITTEN - ].
 unproductive := robust.
 dialect := robust. 
-online := robust.
 
+lex-rule :+ 
+ [ STYLE #style,
+   DTR.STYLE #style ].
+
+basic-unary-phrase :+ 
+  [ STYLE #style,
+    ARGS < [ STYLE #style ] > ].
+
+basic-binary-phrase :+
+  [ STYLE #style,
+    ARGS < [ STYLE #style ],
+           [ STYLE #style ] > ].
+
+le-or-zhe-or-guo := avm & 
+ [ LE bool,
+   ZHE bool,
+   GUO bool ]. 
+le+zhe+guo := le-or-zhe-or-guo & [ LE +, ZHE +, GUO + ].
+le-or-zhe := le-or-zhe-or-guo & [ GUO - ]. 
+le-or-guo := le-or-zhe-or-guo & [ ZHE - ]. 
+zhe-or-guo := le-or-zhe-or-guo & [ LE - ].
+le+zhe := le-or-zhe & [ LE +, ZHE + ].
+le+guo := le-or-guo & [ LE +, GUO + ].
+zhe+guo := zhe-or-guo & [ ZHE +, GUO + ].
+le := le-or-zhe & le-or-guo.
+zhe := le-or-zhe & zhe-or-guo.
+guo := le-or-guo & zhe-or-guo.
+le-only := le & [ LE + ].
+zhe-only := zhe & [ ZHE + ].
+guo-only := guo & [GUO + ].
+no-le-zhe-guo := le-or-zhe & le-or-guo & zhe-or-guo.
+
+verb :+ 
+ [ LE-ZHE-GUO le-or-zhe-or-guo ].
 
 ;;; Lexical types
 
@@ -257,8 +291,7 @@ verb-lex := lex-item &
   [ SYNSEM.LOCAL.CAT.HEAD verb ].
 
 main-verb-lex := verb-lex & basic-verb-lex &
-  [ SYNSEM.LOCAL [ CAT [ MC na,
-			 HEAD.AUX -,
+  [ SYNSEM.LOCAL [ CAT [ HEAD.AUX -,
                          VAL [ SPR < >,
                                SUBJ < #subj > ] ],
                    CONT.HOOK.XARG #xarg ],
@@ -278,7 +311,7 @@ intransitive-lex-item :+
 [ ARG-ST < [ LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] >,
   SYNSEM.LOCAL.CONT.HOOK.CLAUSE-KEY #clause ].
 
-intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
+intransitive-verb-lex := main-verb-lex & intransitive-lex-item & aspect-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     ARG-ST.FIRST.LOCAL.CAT.HEAD noun ].
 
@@ -290,7 +323,7 @@ transitive-lex-item := basic-two-arg-no-hcons & basic-icons-lex-item &
      SYNSEM [ LKEYS.KEYREL.ARG2 #ind2,
               LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] ].
 
-transitive-verb-lex := main-verb-lex & transitive-lex-item &
+transitive-verb-lex := main-verb-lex & transitive-lex-item & aspect-rule-dtr &
   [ SYNSEM [ LOCAL.CAT.VAL.COMPS < #comp >,
          LKEYS.KEYREL.ARG1 #index ],
     ARG-ST < [ LOCAL [ CAT.HEAD noun,
@@ -300,7 +333,7 @@ transitive-verb-lex := main-verb-lex & transitive-lex-item &
                                  COMPS < > ],
                            HEAD noun ] ] > ].
 
-cp-subj-verb-lex := main-verb-lex & transitive-lex-item &
+cp-subj-verb-lex := main-verb-lex & transitive-lex-item & aspect-rule-dtr &
   [ SYNSEM [ LOCAL.CAT.VAL.COMPS < #comp >,
          LKEYS.KEYREL.ARG1 #ltop ],
     ARG-ST < [ LOCAL [ CAT [ HEAD +vjp,
@@ -312,21 +345,24 @@ cp-subj-verb-lex := main-verb-lex & transitive-lex-item &
                                  COMPS < > ],
                            HEAD noun ] ] > ].
 
-s-comp-verb-lex := main-verb-lex  & basic-two-arg-no-hcons & basic-icons-lex-item &
-  [ SYNSEM[LOCAL[CAT.VAL.COMPS < #comp >],
-       LKEYS.KEYREL[ARG1 #ind,
-            ARG2 #ltop]],
-    ARG-ST < [ LOCAL[CAT.HEAD noun,
-             CONT.HOOK.INDEX #ind]],
-             #comp &
-             [ LOCAL[CAT [ VAL [SUBJ <>,
-                SPR < >,
-                COMPS < > ],
-                           HEAD verb ],
-             CONT.HOOK.LTOP #ltop],
-           OPT -]> ].
+;; SSH 2014-09-08: added [MC +] to block overgeneration
+;; 张三 知道 下 过 雨
+s-comp-verb-lex := main-verb-lex  & basic-two-arg-no-hcons & basic-icons-lex-item & aspect-rule-dtr &
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS < #comp >],
+	     LKEYS.KEYREL[ARG1 #ind,
+			  ARG2 #ltop]],
+    ARG-ST < [ LOCAL [ CAT.HEAD noun,
+		       CONT.HOOK.INDEX #ind]],
+	     #comp &
+	     [ LOCAL [ CAT [ MC +,
+			     VAL [ SUBJ <>,
+				   SPR < >,
+				   COMPS < > ],
+			     HEAD verb ],
+		       CONT.HOOK.LTOP #ltop],
+	       OPT -]> ].
 
-vp-comp-verb-lex := main-verb-lex & basic-two-arg-no-hcons & basic-icons-lex-item &
+vp-comp-verb-lex := main-verb-lex & basic-two-arg-no-hcons & basic-icons-lex-item & aspect-rule-dtr &
   [ SYNSEM [ LOCAL.CAT.VAL.COMPS < #comp >,
          LKEYS.KEYREL [ARG1 #ind,
                ARG2 #ltop]],
@@ -341,8 +377,9 @@ vp-comp-verb-lex := main-verb-lex & basic-two-arg-no-hcons & basic-icons-lex-ite
            OPT -]> ].
 
 vp-comp-verb-seq-lex := vp-comp-verb-lex &
-  [ SYNSEM.LOCAL [ CAT.VAL.COMPS < [ LOCAL.CONT.HOOK.XARG #xarg ] >,
-           CONT.HOOK.XARG #xarg ] ].
+  [ SYNSEM.LOCAL [ CAT.VAL.COMPS < [ LOCAL [ CAT.MC na-or--,
+					     CONT.HOOK.XARG #xarg ] ] >,
+		   CONT.HOOK.XARG #xarg ] ].
 
 np-xp-comp-verb-lex := main-verb-lex & basic-three-arg-no-hcons & basic-icons-lex-item &
   [ SYNSEM [ LOCAL.CAT.VAL.COMPS < #comp1, #comp2 >,
@@ -363,6 +400,8 @@ np-xp-comp-verb-lex := main-verb-lex & basic-three-arg-no-hcons & basic-icons-le
              CONT.HOOK.LTOP #ltop],
            OPT -]> ].
 
+
+
 np-vp-comp-verb-lex := np-xp-comp-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ OPT - ], [ LOCAL.CAT.HEAD verb ] > ].
 
@@ -376,19 +415,26 @@ np-ap-comp-verb-lex := np-xp-comp-verb-lex &
 
 np-vp-comp-verb-oeq-lex := np-vp-comp-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CONT.HOOK.INDEX #xarg ],
-                 [ LOCAL.CONT.HOOK.XARG #xarg ] > ].
+				 [ LOCAL [ CAT.MC na-or--,
+					   CONT.HOOK.XARG #xarg ] ] > ].
 
 np-vp-comp-verb-anomeq-lex := np-vp-comp-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ < [ LOCAL.CONT.HOOK.INDEX #xarg ] >,
                COMPS < [ ],
                    [ LOCAL.CONT.HOOK.XARG #xarg ] > ] ].
 
+;; SSH 2014-09-08: The following sentence should be analyzed as being
+;; [ASPECT perfective].
+;; 张三 把 香烟 递 给 了 李四
+
 np-vp-comp-verb-light-lex := np-vp-comp-verb-lex &
   [ SYNSEM.LOCAL [ CAT.VAL.COMPS < [ ],
-                    [ LOCAL.CONT.HOOK.XARG #event ] >,
-           CONT.HOOK.INDEX #event ] ].
+				   [ LOCAL.CONT.HOOK [ XARG #event,
+						       INDEX.E.ASPECT #aspect ] ] >,
+		   CONT.HOOK.INDEX #event & [ E.ASPECT #aspect ] ] ].
 
-pp-s-comp-verb-lex := main-verb-lex & basic-three-arg-no-hcons & basic-icons-lex-item &
+
+pp-s-comp-verb-lex := main-verb-lex & basic-three-arg-no-hcons & basic-icons-lex-item & aspect-rule-dtr &
   [ SYNSEM [ LOCAL.CAT.VAL.COMPS < #comp1, #comp2 >,
          LKEYS.KEYREL [ARG1 #ind,
                ARG2 #ind2,
@@ -406,7 +452,7 @@ pp-s-comp-verb-lex := main-verb-lex & basic-three-arg-no-hcons & basic-icons-lex
              CONT.HOOK.LTOP #ltop],
            OPT -]> ].
 
-ditrans-verb-lex := ditransitive-lex-item & main-verb-lex &
+ditrans-verb-lex := ditransitive-lex-item & main-verb-lex & aspect-rule-dtr &
  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comp1,#comp2>,
    ARG-ST  < [ LOCAL.CAT.HEAD noun ],
              #comp1 &
@@ -420,7 +466,7 @@ ditrans-verb-lex := ditransitive-lex-item & main-verb-lex &
                            HEAD noun ],
                OPT -] >].
 
-trans-loc-verb-lex := basic-three-arg-no-hcons & main-verb-lex & basic-icons-lex-item &
+trans-loc-verb-lex := basic-three-arg-no-hcons & main-verb-lex & basic-icons-lex-item & aspect-rule-dtr &
  [ SYNSEM[LOCAL.CAT.VAL.COMPS < #comp1,#comp2>,
           LKEYS.KEYREL [ARG1 #arg1, 
                         ARG2 #arg2,
@@ -564,9 +610,9 @@ v_npvpslash_type_lex := basic-two-arg-no-hcons & verb-lex & basic-icons-lex-item
 						      VAL [ SPR <>, 
 							    COMPS <>]]],
 					NON-LOCAL.SLASH <! !>],
-				      [ LOCAL [ CAT [HEAD verb,
-						     VAL [ SUBJ < [ NON-LOCAL.SLASH <! !> ] >,
-							   COMPS <>]],
+				      [ LOCAL [ CAT [ HEAD verb,
+						      VAL [ SUBJ < [ NON-LOCAL.SLASH <! !> ] >,
+							    COMPS <>]],
 						CONT.HOOK #hook],
 					OPT -,
 					NON-LOCAL.SLASH <! [ CAT[ HEAD noun,
@@ -603,21 +649,21 @@ v_ba_type_lex := v_npvpslash_type_lex &
 			 SUBJ < [ LOCAL[ CONT.HOOK.INDEX #ind2 ] ] > ] ].
   
                 
-v_weather_type_lex := verb-lex & basic-icons-lex-item &
-[SYNSEM[LOCAL[CAT [VAL [SUBJ <>,
-            SPR <>,
-            COMPS<[LOCAL[CAT [HEAD noun,
-                        VAL [SPR <>, 
-                         COMPS <>]],
-                     CONT.HOOK.INDEX #ind]]>]],
-          CONT[HOOK [LTOP #ltop,
-             INDEX #event],
-           RELS <! #keyrel & 
-             [ARG0 #event,
-              LBL #ltop,
-              ARG1 #ind]!>]],
-    LKEYS.KEYREL #keyrel,
-    NON-LOCAL.SLASH 0-dlist ] ].
+v_weather_type_lex := verb-lex & basic-icons-lex-item & aspect-rule-dtr & 
+ [ SYNSEM [ LOCAL [ CAT [ VAL [ SUBJ <>,
+				SPR <>,
+				COMPS < [ LOCAL [ CAT [ HEAD noun,
+							VAL [SPR <>, 
+							     COMPS <> ] ],
+						  CONT.HOOK.INDEX #ind ] ] > ] ],
+		    CONT [ HOOK [ LTOP #ltop,
+				  INDEX #event],
+			   RELS <! #keyrel & 
+				 [ ARG0 #event,
+				   LBL #ltop,
+				   ARG1 #ind ] !> ] ],
+	    LKEYS.KEYREL #keyrel,
+	    NON-LOCAL.SLASH 0-dlist ] ].
                         
 
 ;;;Adverbs
@@ -922,6 +968,7 @@ finite := form.
 
 ;;; Aspect
 
+;has-aspect := aspect.
 perfective := aspect.
 imperfective := aspect.
 experiential := aspect.
@@ -1073,17 +1120,17 @@ pred-adj-lex := basic-pred-adj-lex &
 ;; FIX? later
 s-comp-adj-lex := basic-pred-adj-lex &
   [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < >,
-               VAL [ SUBJ < >,
-                 SPR < [ LOCAL [ CAT.HEAD adv,
-                         CONT.HOOK.LTOP #ltop ] ] >,
-                 COMPS < [ LOCAL [ CAT [ VAL [ SUBJ < >,
-                                   SPR < >,
-                                   COMPS < > ],
-                             HEAD verb ],
-                           CONT.HOOK.LTOP #cltop ],
-                       OPT - ] > ] ],
-             CONT.HOOK.LTOP #ltop ],
-         LKEYS.KEYREL.ARG1 #cltop ] ].
+			   VAL [ SUBJ < >,
+				 SPR < [ LOCAL [ CAT.HEAD adv,
+						 CONT.HOOK.LTOP #ltop ] ] >,
+				 COMPS < [ LOCAL [ CAT [ VAL [ SUBJ < >,
+							       SPR < >,
+							       COMPS < > ],
+							 HEAD verb ],
+						   CONT.HOOK.LTOP #cltop ],
+					   OPT - ] > ] ],
+		     CONT.HOOK.LTOP #ltop ],
+	     LKEYS.KEYREL.ARG1 #cltop ] ].
 
 ;; DPF 2011-06-03 - We might instead want to treat relative clauses as 
 ;; lacking a gap, with the burden of linking the modified noun's index instead
@@ -1450,10 +1497,11 @@ filler-head-phrase := basic-head-filler-phrase & head-final &
 		      CLAUSE #clause ] !> ] ].
 
 ;; SSH 2014-09-02: added [MODIFIED] for blocking overgeneration
+;; SSH 2014-09-02: added [MC +] for blocking overgeneration
 extracted-comp-phrase := basic-extracted-comp-phrase & no-ccont-rule &
   [ SYNSEM.MODIFIED #modified,
     HEAD-DTR.SYNSEM [ MODIFIED #modified,
-		      LOCAL [ CAT.HEAD verb,
+		      LOCAL [ CAT [ MC +, HEAD verb ],
 			      CONT.HOOK #hook ] ],
     C-CONT.HOOK #hook ].
 
@@ -2049,16 +2097,19 @@ adv_prefix_form_lex := adv_affix_form_lex &
 ;; (e.g. 张三 叫). A sentence without any aspect markers should not be
 ;; paraphrased into sentences with such markers.
 aspect-lex-rule := const-cat-change-only-lex-rule & no-ccont-rule &
-[ SYNSEM.LOCAL.CAT [ HEAD #head, 
-		     VAL #val, 
-		     MKG #mkg, 
-		     HC-LIGHT #light, 
-		     POSTHEAD #posthead ],
-  DTR main-verb-lex & [ SYNSEM.LOCAL.CAT [ HEAD #head, 
-					   VAL #val, 
-					   MKG #mkg, 
-					   HC-LIGHT #light, 
-					   POSTHEAD #posthead ] ] ].
+ [ SYNSEM.LOCAL.CAT [ MC luk,
+		      HEAD #head, 
+		      VAL #val, 
+		      MKG #mkg, 
+		      HC-LIGHT #light, 
+		      POSTHEAD #posthead ],
+   DTR aspect-rule-dtr & [ SYNSEM.LOCAL.CAT [ HEAD #head, 
+					      VAL #val, 
+					      MKG #mkg, 
+					      HC-LIGHT #light, 
+					      POSTHEAD #posthead ] ] ].
+
+aspect-rule-dtr := word-or-lexrule & [ SYNSEM.LOCAL.CAT.MC na ].
 
 
 
@@ -2182,7 +2233,8 @@ punctuation := intersective-mod-lex & no-icons-lex-item &
 					LOCAL [ CAT [ MC +,					    
 						      HEAD +vc,
 						      VAL [ SUBJ <>, SPR <>, COMPS <> ] ],
-						CONT.HOOK.INDEX.SF #sf ] ]> ],
+						CONT.HOOK.INDEX.SF #sf ],
+					NON-LOCAL.SLASH 0-dlist ] > ],
 				VAL [ COMPS < >, SUBJ < >, SPR < > ],
 			   POSTHEAD + ],
 		     CONT [ HOOK.INDEX.SF #sf,

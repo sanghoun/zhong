@@ -126,48 +126,59 @@ question-marker := punctuation &
 
 叫_v := v_intrans-verb-lex &
   [ STEM < "叫" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_jiao4_v_1_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_jiao4_v_1_rel" ] ].
 
 来_v := v_intrans-verb-lex &
   [ STEM < "来" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_lai2_v_1_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_lai2_v_1_rel" ] ].
 
 去_v := v_intrans-verb-lex &
   [ STEM < "去" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_qu4_v_1_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+guo,
+	     LKEYS.KEYREL.PRED "_qu4_v_1_rel" ] ].
 
 吃_v := v_trans-verb-lex &
   [ STEM < "吃" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_chi1_v_1_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_chi1_v_1_rel" ] ].
 
 爱_v :=  v_trans-verb-lex &
   [ STEM <"爱">,
-    SYNSEM.LKEYS.KEYREL.PRED "_ai4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ai4_v_rel" ] ].
 
 追赶_v := v_trans-verb-lex &
   [ STEM < "追赶" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zhui1gan3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zhui1gan3_v_rel" ] ].
 
 喜欢_v := v_trans-verb-lex &
   [ STEM <"喜欢">,
-    SYNSEM.LKEYS.KEYREL.PRED "_xi3huan1_v_rel",
-       ALTS.LE-PFV - ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_xi3huan1_v_rel" ],
+    ALTS.LE-PFV - ].
 
 做_v := v_trans-verb-lex &
   [ STEM < "做" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zuo4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zuo4_v_rel" ] ].
 
 执行_v := v_trans-verb-lex &
   [ STEM <"执行">,
-    SYNSEM.LKEYS.KEYREL.PRED "_zhi2xing2_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zhi2xing2_v_rel" ] ].
 
 爬_v := v_trans-verb-lex &
   [ STEM < "爬" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_pa2_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_pa2_v_rel" ] ].
 
 组成_v := v_prep-lex-item &
   [ STEM <"组成">,
-    SYNSEM.LKEYS.KEYREL.PRED "_zu3cheng2_v_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zu3cheng2_v_rel" ] ].
 
 被_v := v_bei_type_lex &
   [ STEM <"被"> ].
@@ -177,43 +188,53 @@ question-marker := punctuation &
 
 下_v := v_weather_type_lex &
   [ STEM <"下">,
-    SYNSEM.LKEYS.KEYREL.PRED "_xia4_v_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_xia4_v_rel"] ].
 
 觉得_v := s-comp-verb-lex &
   [ STEM <"觉得">,
-    SYNSEM.LKEYS.KEYREL.PRED "_jue3de_v_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_jue3de_v_rel"] ].
 
 觉得_v2 := np-ap-comp-verb-lex &
   [ STEM <"觉得">,
-    SYNSEM.LKEYS.KEYREL.PRED "_jue3de_v_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_jue3de_v_rel" ] ].
 
 认为_v := v_trans-verb-lex &
   [ STEM < "认为" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ren2wei2_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ren2wei2_v_rel" ] ].
 
 认为_v2 := s-comp-verb-lex &
   [ STEM <"认为">,
-    SYNSEM.LKEYS.KEYREL.PRED "_ren4wei4_v_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ren4wei4_v_rel" ] ].
 
 说_v := s-comp-verb-lex &
   [ STEM < "说" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_shuo1_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_shuo1_v_rel" ] ].
 
 放_v  := trans-loc-verb-lex &
   [ STEM < "放" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_fang4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_fang4_v_rel" ] ].
 
 进_v  := v_a-equi-lex &
   [ STEM < "进" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_jin4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_jin4_v_rel" ] ].
 
 进去_v := v_intrans-verb-lex &
   [ STEM < "进去" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_jin4qu4_v_1_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_jin4qu4_v_1_rel" ] ].
 
 打赌_v := s-comp-verb-lex &
   [ STEM < "打赌" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3du3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3du3_v_rel" ] ].
 
 ;;;Adjectives
 
@@ -290,21 +311,40 @@ question-marker := punctuation &
   [ STEM <"了">,
     SYNSEM.LKEYS.KEYREL.PRED "_le_a_rel" ].
 
-;了_crs := int-adv-s-post & 
-;  [ STEM <"了">,
-;    SYNSEM [ LKEYS.KEYREL.PRED "_le_a_rel",
-;	     LOCAL.CAT.HEAD.MOD < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT imperfective ] > ] ].
+; 了_crs := int-adv-s-post & 
+;   [ STEM <"了">,
+;     SYNSEM [ LKEYS.KEYREL.PRED "_le_a_rel",
+; 	     LOCAL.CAT.HEAD.MOD < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT has-aspect ] > ] ].
 
 
 了_pfv := le-pfv-v-post &
-  [ STEM <"了">].
+  [ STEM <"了">,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.LE + ] > ].
 
-过_exp := adv-exp-v-post &
-  [ STEM <"过">].
-  
+了_pfv_robust := le-pfv-v-post &
+  [ STEM <"了">,
+    STYLE robust,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.LE - ] > ].
+ 
+ 
 ;; SSH 2014-09-02: irules.tdl is now an empty file
 着_dur := adv-dur-v-post &
-  [ STEM <"着">].
+  [ STEM <"着">,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.ZHE + ] > ].
+
+着_dur_robust := adv-dur-v-post &
+  [ STEM <"着">,
+    STYLE robust,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.ZHE - ] > ].
+
+过_exp := adv-exp-v-post &
+  [ STEM <"过">,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.GUO + ] > ].
+
+过_exp_robust := adv-exp-v-post &
+  [ STEM <"过">,
+    STYLE robust,
+    SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.HEAD.LE-ZHE-GUO.GUO - ] > ].
 
 今天_r := scop-adv-lex &
   [ STEM <"今天">,
@@ -604,7 +644,8 @@ question-marker := punctuation &
 
 给_v := ditrans-verb-lex &
   [ STEM < "给" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_gei3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_gei3_v_rel" ] ].
 
 给_v2 := v_light-verb-lex &
   [ STEM < "给" >,
@@ -629,17 +670,20 @@ question-marker := punctuation &
 ; Should be a preposition (instrumental)
 用_v := v_trans-verb-lex &
   [ STEM < "用" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_yong4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_yong4_v_rel" ] ].
 
 ;;Note, can also take an S complement
 
 知道_v := v_trans-verb-lex &
   [ STEM < "知道" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zhi1dao4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zhi1dao4_v_rel" ] ].
 
 知道_v2 := s-comp-verb-lex &
   [ STEM < "知道" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zhi1dao4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zhi1dao4_v_rel" ] ].
 
 
 窗户_n := count-noun-lex &
@@ -667,7 +711,8 @@ question-marker := punctuation &
 
 像_v := v_trans-verb-lex &
   [ STEM < "像" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_xiang4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_xiang4_v_rel" ] ].
 
 六月_n := time-noun-lex &
   [ STEM < "六月" >,
@@ -679,11 +724,13 @@ question-marker := punctuation &
 
 跑_v := v_intrans-verb-lex &
   [ STEM < "跑" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_pao3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_pao3_v_rel" ] ].
 
 到_v := v_trans-verb-lex &
   [ STEM < "到" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_dao4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_dao4_v_rel" ] ].
 
 十_j := num-adj-lex &
   [ STEM < "十" >,
@@ -703,7 +750,8 @@ question-marker := punctuation &
 
 困扰_v := v_trans-verb-lex &
   [ STEM < "困扰" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_kun4rao3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_kun4rao3_v_rel" ] ].
 
 快乐_j := pred-adj-lex &
   [ STEM < "快乐" >,
@@ -711,7 +759,8 @@ question-marker := punctuation &
 
 坐_v := v_trans-verb-lex &
   [ STEM < "坐" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zuo4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zuo4_v_rel" ] ].
 
 坐_v2 := v_a-equi-lex &
   [ STEM < "坐" >,
@@ -743,7 +792,8 @@ question-marker := punctuation &
 
 递_v := v_trans-verb-lex &
   [ STEM < "递" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_di4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_di4_v_rel" ] ].
 
 递_v2 := v_np-vp_light-lex &
   [ STEM < "递" >,
@@ -775,7 +825,8 @@ question-marker := punctuation &
 
 想_v := v_trans-verb-lex &
   [ STEM < "想" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_xiang3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_xiang3_v_rel" ] ].
 
 想_v_v2 := v_s-equi-lex &
   [ STEM < "想" >,
@@ -783,15 +834,18 @@ question-marker := punctuation &
 
 找到_v := v_trans-verb-lex &
   [ STEM < "找到" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zhao3dao4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_zhao3dao4_v_rel" ] ].
 
 打算_v := v_trans-verb-lex &
   [ STEM < "打算" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3suan0_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3suan0_v_rel" ] ].
 
 打算_v2 := v_s-equi-lex &
   [ STEM < "打算" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3suan0_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3suan0_v_rel" ] ].
 
 ;打算_v3 := v_o-equi-lex &
 ;  [ STEM < "打算" >,
@@ -799,23 +853,28 @@ question-marker := punctuation &
 
 打开_v := v_trans-verb-lex &
   [ STEM < "打开" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3kai1_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3kai1_v_rel" ] ].
 
 打扰_v := v_trans-verb-lex &
   [ STEM < "打扰" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3rao3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3rao3_v_rel" ] ].
 
 打赌_v2 := v_intrans-verb-lex &
   [ STEM < "打赌" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3du3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3du3_v_rel" ] ].
 
 打扰_v3 := cp-subj-verb-lex &
   [ STEM < "打扰" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_da3rao3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_da3rao3_v_rel" ] ].
 
 挤_v := v_trans-verb-lex &
   [ STEM < "挤" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ji3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ji3_v_rel" ] ].
 
 挤_v2 := v_o-equi-lex &
   [ STEM < "挤" >,
@@ -823,11 +882,13 @@ question-marker := punctuation &
 
 擦_v := v_trans-verb-lex &
   [ STEM < "擦" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ca1_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ca1_v_rel" ] ].
 
 擦_v2 := np-ap-comp-ba-verb-lex &
   [ STEM < "擦" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ca1_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ca1_v_rel" ] ].
 
 方法_n := count-noun-lex &
   [ STEM < "方法" >,
@@ -847,7 +908,8 @@ question-marker := punctuation &
 
 显得_v := v_intrans-verb-lex &
   [ STEM < "显得" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_suan4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_suan4_v_rel" ] ].
 
 明显_j := pred-adj-lex &
   [ STEM < "明显" >,
@@ -887,7 +949,8 @@ question-marker := punctuation &
 
 要_v2 := v_trans-verb-lex &
   [ STEM < "要" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_yao4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_yao4_v_rel" ] ].
 
 老_j := attr-adj-lex &
   [ STEM < "老" >,
@@ -903,19 +966,23 @@ question-marker := punctuation &
 
 推荐_v2 := s-comp-verb-lex &
   [ STEM < "推荐" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ tui1jian4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ tui1jian4_v_rel" ] ].
 
 请_v1 := v_o-equi-lex &
   [ STEM < "请" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ qing3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ qing3_v_rel" ] ].
 
 请_v2 := s-comp-verb-lex &
   [ STEM < "请" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ qing3_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_ qing3_v_rel" ] ].
 
 试_v := v_intrans-verb-lex &
   [ STEM < "试" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_shi4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_shi4_v_rel" ] ].
 
 话_n := noun-lex &
   [ STEM < "话" >,
@@ -931,7 +998,8 @@ question-marker := punctuation &
 
 花_v := v_trans-verb-lex &
   [ STEM < "花" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_hua1_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_hua1_v_rel" ] ].
 
 花_v2 := v_a-equi-lex &
   [ STEM < "花" >,
@@ -951,11 +1019,13 @@ question-marker := punctuation &
 
 保证_v := v_trans-verb-lex &
   [ STEM < "保证" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_bao3zheng4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_bao3zheng4_v_rel" ] ].
 
 保证_v2 := pp-s-comp-verb-lex &
   [ STEM < "保证" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_bao3zheng4_v_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.LE-ZHE-GUO le+zhe+guo,
+	     LKEYS.KEYREL.PRED "_bao3zheng4_v_rel" ] ].
 
 一_j := num-adj-lex &
   [ STEM < "一" >,

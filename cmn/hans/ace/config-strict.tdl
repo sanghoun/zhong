@@ -4,7 +4,7 @@
 grammar-top               := "../hans-pet-strict.tdl".
 variable-property-mapping := "../semi.vpm".
 preprocessor              := "../repp/vanilla.rpp".
-;generation-ignore-signs   := "generation.ignore".
+generation-ignore-signs   := "../generation.ignore".
 generation-trigger-rules  := "../trigger.mtr".
 version                   := "../Version.lsp".
 parse-node-labels         := "../labels.tdl".

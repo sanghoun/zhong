@@ -13,6 +13,14 @@ question-marker_gr := arg0e_gtr &
 [ CONTEXT.RELS <! [ ARG0.E.ASPECT perfective ] !>,
   FLAGS.TRIGGER "了_pfv" ]. 
 
+过_exp_gr := arg0e_gtr &
+[ CONTEXT.RELS <! [ ARG0.E.ASPECT experiential ] !>,
+  FLAGS.TRIGGER "过_exp" ].
+
+着_dur_gr := arg0e_gtr &
+[ CONTEXT.RELS <! [ ARG0.E.ASPECT durative ] !>,
+  FLAGS.TRIGGER "着_dur" ].
+
 吗_qp_gr := arg0e_gtr &
 [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
   FLAGS.TRIGGER "吗_qp" ]. 
@@ -24,14 +32,6 @@ question-marker_gr := arg0e_gtr &
 正在_r_gr := arg0e_gtr &
 [ CONTEXT.RELS <! [ ARG0.E.ASPECT imperfective ] !>,
   FLAGS.TRIGGER "正在_r" ].
-
-过_exp_gr := arg0e_gtr &
-[ CONTEXT.RELS <! [ ARG0.E.ASPECT experiential ] !>,
-  FLAGS.TRIGGER "过_exp" ].
-
-着_dur_gr := arg0e_gtr &
-[ CONTEXT.RELS <! [ ARG0.E.ASPECT durative ] !>,
-  FLAGS.TRIGGER "着_dur" ].
 
 被_v_gr_1 := arg0e_gtr &
 [ CONTEXT.RELS <! [ ARG1 individual & #i ] !>,
@@ -86,7 +86,6 @@ question-marker_gr := arg0e_gtr &
 [ CONTEXT [ RELS <! [ PRED "non_existing_rel" ] !> ],
   FLAGS.TRIGGER "好像_r2" ].
 
-
 #|
 以前_r1_gr_1 := arg0e_gtr &
 [ CONTEXT.RELS <! [ ARG1 individual & #i ] !>,
@@ -133,3 +132,15 @@ question-marker_gr := arg0e_gtr &
   FLAGS [ SUBSUME < #i >,
 	  TRIGGER "好像_r2" ] ].
 |#
+
+了_pfv_robust_gr := arg0e_gtr &
+[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+  FLAGS.TRIGGER "了_pfv_robust" ]. 
+
+着_dur_robust_gr := arg0e_gtr &
+[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+  FLAGS.TRIGGER "着_dur_robust" ]. 
+
+过_exp_robust_gr := arg0e_gtr &
+[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+  FLAGS.TRIGGER "过_exp_robust" ]. 
