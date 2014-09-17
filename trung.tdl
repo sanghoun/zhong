@@ -14,14 +14,13 @@
 ;; SSH 2014-09-04: Teh style feature for efficient generation
 sign :+
  [ STYLE style,
-   IDIOM bool ].
+   IDIOMATIC luk ].
 
 ;;; STYLE
-style := avm &
+style := avm & 
  [ WRITTEN luk ].
 strict := style &
  [ WRITTEN + ].
-
 robust := style.
 spoken := robust & 
  [ WRITTEN - ].
@@ -36,32 +35,18 @@ basic-unary-phrase :+
   [ STYLE #style,
     ARGS < [ STYLE #style ] > ].
 
-basic-binary-phrase :+
-  [ STYLE #style,
-    ARGS < [ STYLE #style ],
-           [ STYLE #style ] > ].
-
-le-or-zhe-or-guo := avm & 
- [ LE bool,
-   ZHE bool,
-   GUO bool ]. 
-le+zhe+guo := le-or-zhe-or-guo & [ LE +, ZHE +, GUO + ].
-le-or-zhe := le-or-zhe-or-guo & [ GUO - ]. 
-le-or-guo := le-or-zhe-or-guo & [ ZHE - ]. 
-zhe-or-guo := le-or-zhe-or-guo & [ LE - ].
-le+zhe := le-or-zhe & [ LE +, ZHE + ].
-le+guo := le-or-guo & [ LE +, GUO + ].
-zhe+guo := zhe-or-guo & [ ZHE +, GUO + ].
-le := le-or-zhe & le-or-guo.
-zhe := le-or-zhe & zhe-or-guo.
-guo := le-or-guo & zhe-or-guo.
-le-only := le & [ LE + ].
-zhe-only := zhe & [ ZHE + ].
-guo-only := guo & [GUO + ].
-no-le-zhe-guo := le-or-zhe & le-or-guo & zhe-or-guo.
+lzg := avm. 
+le := lzg.
+zhe := lzg.
+guo := lzg.
+no-lzg := lzg.
+le+zhe := le & zhe.
+le+guo := le & guo.
+zhe+guo := zhe & guo.
+le+zhe+guo := le & zhe & guo.
 
 verb :+ 
- [ LE-ZHE-GUO le-or-zhe-or-guo ].
+ [ LZG lzg ].
 
 ;;; Lexical types
 
@@ -135,6 +120,13 @@ proper-noun-lex := basic-one-arg & basic-icons-lex-item &
                      LARG #larg ] !> ] ],
          NON-LOCAL.SLASH 0-dlist,
          LKEYS.KEYREL #keyrel & named-relation ] ].
+
+
+;; SSH 2014-09-11: Locative Proper Names (e.g. 北京).
+;; 我 要 去 北京: I would like to go to Beijing.
+;; *我 要 去 李四 / 我 要 去 李四 的 家
+loc-proper-noun-lex := proper-noun-lex.
+
 
 basic-pronoun-lex :=  basic-one-arg & 
   [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
@@ -715,11 +707,12 @@ int-adv-v-post := intersective-mod-lex & basic-icons-lex-item &
   [ SYNSEM [ LOCAL [ CAT [ HEAD adv & 
 				[ MOD < lex-synsem & 
 					[ LOCAL [ CAT [ POSTHEAD -,
-							HEAD verb ],
+							HEAD verb & [ AUX - ] ],
 						  CONT.HOOK #hook ] ] > ],
 			   VAL [ COMPS < >,
 				 SUBJ < >,
-				 SPR < >],
+				 SPEC < >,
+				 SPR < > ],
 			   POSTHEAD + ],
 		     CONT [ HOOK #hook, RELS <! !> ] ],
 	     NON-LOCAL.SLASH 0-dlist ] ].
@@ -768,15 +761,18 @@ int-adv-s-pre := intersective-mod-lex & basic-icons-lex-item &
 
 ;; Postverbal adverbs 
 
+;; SSH 2014-09-11: [SPEC <>] is added to block 了 不.
 int-adv-s-post := basic-int-adverb-lex &
   [ STYLE robust,
     SYNSEM.LOCAL.CAT [ HEAD.MOD < [ LOCAL.CAT [ HEAD verb,
-                        VAL [ SUBJ < >,
-                              COMPS < > ],
-                        MC + & #mc ] ] >,
-               VAL [ COMPS < >,
-                 SPR<>] ,
-               POSTHEAD +,
+						VAL [ SUBJ < >,
+						      COMPS < > ],
+						MC + & #mc ],
+				    NON-LOCAL.SLASH 0-dlist ] >,
+		       VAL [ COMPS < >,
+			     SPEC < >,
+			     SPR < >] ,
+		       POSTHEAD +,
                MC #mc ] ].
 
 ;; Moveable scopal adverbs -- Edited 8-21-09 1:11PM
@@ -846,7 +842,8 @@ subj-raise-aux-with-pred := subj-raise-aux & norm-sem-lex-item &
                             trans-first-arg-raising-lex-item-1.
 
 v_aux-aux-lex := subj-raise-aux-with-pred &
-  [ SYNSEM.LOCAL [ CAT.VAL.COMPS.FIRST [ LOCAL.CAT.HEAD.FORM finite,
+  [ SYNSEM.LOCAL [ CAT.VAL.COMPS.FIRST [ LOCAL.CAT [ MC +,
+						     HEAD.FORM finite ],
                                          OPT -],
                    CONT.HOOK.INDEX.SF prop-or-ques ] ].
 
@@ -999,9 +996,11 @@ head-adj-phrase :+
 
 ;; SSH 2014-09-04: blocking 张三 叫 了 。 了
 head-adj-int-phrase :+ 
-  [ SYNSEM.R-PERIPH #rperiph,
+  [ SYNSEM [ L-PERIPH #lperiph,
+	     R-PERIPH #rperiph ],
     HEAD-DTR.SYNSEM.R-PERIPH na-or--,
-    NON-HEAD-DTR.SYNSEM.R-PERIPH #rperiph ].
+    NON-HEAD-DTR.SYNSEM [ L-PERIPH #lperiph,
+			  R-PERIPH #rperiph ] ].
 
 ;; The head of head-comp-phrase can't be: ['comp']
 
@@ -1035,12 +1034,14 @@ comp-head-phrase := basic-head-1st-comp-phrase & head-final &
 
 ;; Type for negative adverbs.
 
+
 neg-adv-lex := basic-scopal-adverb-lex &
   [ SYNSEM.LOCAL.CAT [ VAL.COMPS < >,
                        POSTHEAD -,
-                       HEAD.MOD < [ LOCAL.CAT [ HEAD verb,
-                                                VAL [ SUBJ cons,
-                                                      COMPS null ] ] ] > ] ].
+                       HEAD.MOD < [ LOCAL [ CAT [ MC +,
+						  HEAD verb,
+						  VAL [ SUBJ cons,
+							COMPS null ] ] ] ] > ] ].
 
 ; For polar questions
 v-not-v-adv-lex := basic-scopal-adverb-lex &
@@ -1682,7 +1683,8 @@ basic-head-spec-phrase := head-valence-phrase & phrasal &
 				CONT.HOOK #hdhook & [ CLAUSE-KEY #clause ] ],
                         MODIFIED #hmodif ] ],
     NON-HEAD-DTR.SYNSEM #synsem &
-     [ LOCAL [ CAT.VAL.SPEC < [ LOCAL [ CAT [ HEAD #head,
+     [ R-PERIPH na-or--,
+       LOCAL [ CAT.VAL.SPEC < [ LOCAL [ CAT [ HEAD #head,
 					    VAL.COMPS #comps ],
 				      CONT.HOOK #hdhook ],
 			      MODIFIED #hmodif ] >,
@@ -2227,9 +2229,11 @@ basic-head-opt-comp-phrase := head-valence-phrase & head-only &
 
 punctuation := intersective-mod-lex & no-icons-lex-item & 
   [ STYLE strict,
-    SYNSEM [ R-PERIPH +,
+    SYNSEM [ L-PERIPH +,
+	     R-PERIPH +,
 	     LOCAL [ CAT [ HEAD adv & 
-			      [ MOD < [ R-PERIPH na-or--,
+			      [ MOD < [ 
+					R-PERIPH na-or--,
 					LOCAL [ CAT [ MC +,					    
 						      HEAD +vc,
 						      VAL [ SUBJ <>, SPR <>, COMPS <> ] ],
