@@ -16,6 +16,21 @@
 ;;; the more specific one must appear first in this list, or
 ;;; it will never get used.
 
+
+;; SSH 2014-09-26: Following the Penn Tagset 。？！are tagged as '.'.
+
+; comma-label := label & 
+;             [ SYNSEM.LOCAL [ CAT [ HEAD comma,
+;                                    VAL.SPR < > ],
+;                              COORD-STRAT "" ],
+;               LABEL-NAME "," ].
+
+punct-label := label & 
+            [ SYNSEM.LOCAL [ CAT [ HEAD punct,
+                                   VAL.SPR < > ],
+                             COORD-STRAT "" ],
+              LABEL-NAME "." ].
+
 np-label := label & 
             [ SYNSEM.LOCAL [ CAT [ HEAD noun,
                                    VAL.SPR < > ],

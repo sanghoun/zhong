@@ -9,6 +9,9 @@ question-marker := punctuation &
   [ STEM < "？" >,
     SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
 
+; comma-marker := punctuation &
+;   [ STEM < "、" > ].
+
 ;;; Nouns
 我_n := 1sg-pronoun-noun-lex &
   [ STEM < "我" > ].
@@ -16,6 +19,9 @@ question-marker := punctuation &
 你_n := 2sg-pronoun-noun-lex &
   [ STEM < "你" > ].
 
+您_n := 2sg-pronoun-noun-hon-lex &
+  [ STEM < "您" > ].
+ 
 他_n := 3sg-pronoun-noun-lex &
   [ STEM < "他" >,
     SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ GENDER masc,
@@ -536,7 +542,7 @@ question-marker := punctuation &
 不_r := neg-adv-lex &
   [ STEM < "不" >,
     SYNSEM [ LKEYS.KEYREL.PRED "_neg_r_rel",
-	     LOCAL.CAT.HEAD.MOD < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT non-aspect ] > ] ].
+			 LOCAL.CAT.HEAD.MOD < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT non-aspect ] > ] ].
 
 又_c := conj-lex &
   [ STEM < "又" >,
@@ -566,7 +572,8 @@ question-marker := punctuation &
 
 在_loc := basic-loc-lex & 
   [ STEM < "在" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_zai4_p_rel"].
+    SYNSEM [ LOCAL.CAT.HEAD.LZG le,
+			 LKEYS.KEYREL.PRED "_zai4_p_rel" ] ].
 
 到_loc := prep-vmod-lex &
  [ STEM < "到" >,
@@ -591,6 +598,10 @@ question-marker := punctuation &
 
 
 ;;Conjunctions
+
+comma_c := conj-lex &
+  [ STEM < "、" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel"].
 
 和_c := conj-lex &
   [ STEM < "和" >,
@@ -955,7 +966,8 @@ question-marker := punctuation &
 
 没_r := neg-adv-lex &
   [ STEM < "没" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_mei2_r_rel" ].
+    SYNSEM [ LOCAL.CAT.HEAD.MOD < [ LOCAL.CONT.HOOK.INDEX.E.ASPECT imperfective ] >,
+			 LKEYS.KEYREL.PRED "_mei2_r_rel" ] ].
 
 没_polar_r := v-not-v-adv-lex &
   [ STEM < "没" >,
