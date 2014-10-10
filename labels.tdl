@@ -55,6 +55,14 @@ n-bottom-label := label &
                              COORD + ],
               LABEL-NAME "NP-B" ].
 
+;; SSH 2014-10-10 Nominalizer 的 'de'
+;; According to Rose, this item cannot be labeled as 'N'. 
+nm-label := label &
+	   [ SYNSEM.LOCAL [ CAT [ HEAD nm,
+                                  VAL.SPR < [ ], anti-synsem > ],
+                            COORD-STRAT "" ],
+             LABEL-NAME "NM" ].
+
 n-label := label & 
 	   [ SYNSEM.LOCAL [ CAT [ HEAD noun,
                                   VAL.SPR < [ ], ... > ],

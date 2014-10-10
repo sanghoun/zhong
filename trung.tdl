@@ -51,6 +51,10 @@ le+zhe+guo := le & zhe & guo.
 noun :+ 
  [ HON bool ].
 
+;; SSH 2014-10-10 nominalizer 的 'de'
+nm := noun.
+
+
 hon-lex := lex-item &
   [ SYNSEM.LOCAL.CAT.HEAD.HON + ]. 
 
